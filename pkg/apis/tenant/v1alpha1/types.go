@@ -22,8 +22,8 @@ type Tenant struct {
 }
 
 type TenantSpec struct {
-	// Fill me
+	Namespace string `json:"namespace"`
 }
 type TenantStatus struct {
-	// Fill me
+	Phase string `json:"phase"`
 }
