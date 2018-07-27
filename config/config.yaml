@@ -1,0 +1,3 @@
+apiVersion: tenant.oxalide.com/v1alpha1
+kind: Tenant
+projectName: tenant-operator

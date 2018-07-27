@@ -1,0 +1,4 @@
+apiVersion: "tenant.oxalide.com/v1alpha1"
+kind: "Tenant"
+metadata:
+  name: "example"
