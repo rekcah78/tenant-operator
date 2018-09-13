@@ -29,6 +29,11 @@ func (h *Handler) Handle(ctx context.Context, event sdk.Event) error {
 			logrus.Errorf("Failed to create namespace : %v", err)
 			return err
 		}
+		err_rq := sdk.Create(newResourceQuota(o))
+		if err_rq != nil && !errors.IsAlreadyExists(err_rq) {
+			logrus.Errorf("Failed to create resource quota : %v", err_rq)
+			return err_rq
+		}
 	}
 	return nil
 }
@@ -49,5 +54,19 @@ func newNamespace(cr *v1alpha1.Tenant) *corev1.Namespace {
 				}),
 			},
 		},
+	}
+}
+
+func newResourceQuota(cr *v1alpha1.Tenant) *corev1.ResourceQuota {
+	return &corev1.ResourceQuota{
+		TypeMeta: metav1.TypeMeta{
+			Kind:       "ResourceQuota",
+			APIVersion: "v1",
+		},
+		ObjectMeta: metav1.ObjectMeta{
+			Name:      cr.Spec.Namespace,
+			Namespace: cr.Spec.Namespace,
+		},
+		Spec: cr.Spec.ResourceQuota.Spec,
 	}
 }

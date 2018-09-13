@@ -1,6 +1,7 @@
 package v1alpha1
 
 import (
+	"k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -23,6 +24,9 @@ type Tenant struct {
 
 type TenantSpec struct {
 	Namespace string `json:"namespace"`
+	LimitRange  []v1.LimitRangeSpec `json:"limitrange,omitempty"`
+	ResourceQuota *v1.ResourceQuota `json:"resourcequota"`
+	NodeSelector map[string]string `json:"nodeSelector,omitempty"`
 }
 type TenantStatus struct {
 	Phase string `json:"phase"`

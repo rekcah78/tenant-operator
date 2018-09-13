@@ -19,6 +19,7 @@ rules:
   - events
   - configmaps
   - secrets
+  - resourcequotas
   verbs:
   - "*"
 - apiGroups:
@@ -56,6 +57,8 @@ rules:
   - ""
   resources:
   - namespaces
+  - resourcequotas
+  - resourcequotas/status
   verbs:
   - "*"
 

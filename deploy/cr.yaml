@@ -4,3 +4,9 @@ metadata:
   name: "example"
 spec:
   namespace: "example"
+  resourcequota:
+    hard:
+      limits.cpu: "2"
+      persistentvolumeclaims: "1"
+      services.loadbalancers: "2"
+      services.nodeports: "0"
